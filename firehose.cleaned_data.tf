@@ -71,8 +71,8 @@ data "aws_iam_policy_document" "cleaned_data_firehose_policy_doc" {
   statement {
     effect = "Allow"
     actions = [
-        "lambda:InvokeFunction",
-        "lambda:GetFunctionConfiguration"
+      "lambda:InvokeFunction",
+      "lambda:GetFunctionConfiguration"
     ]
     resources = ["arn:aws:lambda:*:*:function:clean_beer_data:*"]
   }

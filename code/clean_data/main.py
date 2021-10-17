@@ -5,11 +5,15 @@ INTEREST_FIELDS = ["id", "name", "abv", "ibu", "target_fg", "target_og", "ebc", 
 
 
 def remove_unwanted_fields(data: dict) -> dict:
-    return {key: data[key] for key in data if key in INTEREST_FIELDS}
+    desired_data = {key: data[key] for key in data if key in INTEREST_FIELDS}
+    return dict(sorted(desired_data.items(), key=lambda x:x[0]))
 
 
 def convert_dict_to_csv(data: dict) -> str:
-    return ",".join([str(value) for value in data.values()]) + "\n"
+    if data["name"] is None:
+        data["name"] = ""
+
+    return ",".join([str(value) if value is not None else "0" for value in data.values()]) + "\n"
 
 
 def convert_str_to_base64(data: str) -> str:
