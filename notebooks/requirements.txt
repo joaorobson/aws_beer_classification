@@ -1,0 +1,8 @@
+boto3
+notebook
+jupyter
+pandas
+pyathena
+python-dotenv
+requests
+scikit-learn

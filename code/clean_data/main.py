@@ -12,6 +12,14 @@ def remove_unwanted_fields(data: dict) -> dict:
 def convert_dict_to_csv(data: dict) -> str:
     if data["name"] is None:
         data["name"] = ""
+    data["name"] = '"' + data["name"] + '"'
+
+    for k in data:
+        if k not in ("name", "id") and data[k]:
+            try:
+                data[k] = float(data[k])
+            except:
+                pass
 
     return ",".join([str(value) if value is not None else "0" for value in data.values()]) + "\n"
 
